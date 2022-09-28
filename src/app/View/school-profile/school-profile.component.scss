@@ -1,0 +1,32 @@
+span{
+    background-color:darkorange;
+}
+  
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
+  
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+  
+textarea{
+    color: rgb(88, 85, 85);
+    font-size: 15px;
+}
+  
+label{
+    color: black;
+    font-size: medium;
+}
+  
+.card-header{
+    font-size: large;
+}
+  
+h2{
+    font-family: 'Times New Roman', Times, serif  ;
+}

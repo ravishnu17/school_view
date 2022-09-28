@@ -1,0 +1,33 @@
+a{
+    cursor: pointer;
+  }
+  
+  mat-toolbar{
+    background-color: blue;
+    color: white;
+  }
+  mat-sidenav{
+    margin: 3px;
+    width: 200px;
+    background: blue;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  mat-sidenav-container{
+    height: calc(100vh - 65px);
+    background-color: cadetblue;
+  }
+  
+  .menu-button{
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    padding: 10px;
+  }
+   
+  .selected{
+    background-color: rgb(234, 131, 6);
+  }
+  
+  

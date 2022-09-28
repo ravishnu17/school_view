@@ -1,0 +1,182 @@
+<div class="container py-2">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col col-xl-9">
+            <div class="card p-3" style="border-radius:5px ;">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-center">
+                            <img src="../assets/Media/dbstar_logo.png" width="200" alt="DBSTAR">
+                        </div>
+                        <label class="container d-flex justify-content-center p-3"
+                            style="font-size:25px ;color:blue;font-weight: bold;background-color:powderblue;">User
+                            Profile</label>
+                    </div>
+                </div>
+                <form [formGroup]="profileForm">
+                    <div *ngIf="step !=1" class="px-3">
+                        <div class="row mt-3">
+                            <div class="col-md">
+                                <label class="text-lg text-dark mb-1 mt-2">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    <input class="form-control" formControlName="name" placeholder="Full Name"
+                                        type="text" required="">
+                                </div>
+                                <div style="text-align:margin-left;"
+                                    *ngIf="profileForm.controls['name'].invalid && profileForm.controls['name'].touched"
+                                    class="text text-danger">
+                                    Name field is required
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <label class="text-lg text-dark mb-1 mt-2">Date of Birth </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-calendar"></i></span>
+                                    <input class="form-control " formControlName="dob" placeholder="Date of Birth"
+                                        type="date" required="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md">
+                                <label class="text-lg text-dark mb-1">Gender</label>
+                                <div class="input-group-text">
+                                    <span class="input-group-text"><i class="fa fa-venus-mars"></i></span>
+                                    <div class="form-check form-check-inline" style="margin-left:12px;">
+                                        <input class="form-check-input" type="radio" formControlName="gender" id="male"
+                                            value="male" required="">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" formControlName="gender"
+                                            id="female" value="female" required="">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <label class="text-lg text-dark mb-1 mt-2">Mobile No.</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-mobile"></i></span>
+                                    <input class="form-control " formControlName="mobile" placeholder="Mobile number"
+                                        type="text" [maxlength]="10" [minlength]="10" required="">
+                                </div>
+                                <div style="text-align:margin-left;" *ngIf="profileForm.controls['mobile'].invalid && profileForm.controls['mobile'].touched"
+                                    class="text text-danger">
+                                    Enter valid mobile number
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md">
+                                <label class="text-lg text-dark mb-1 mt-2">Mail ID </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                    <input class="form-control " formControlName="email" placeholder="Email"
+                                        [email]="true" type="mail" required="">
+                                </div>
+                                <div style="text-align:margin-left;"
+                                    *ngIf="profileForm.controls['email'].invalid && profileForm.controls['email'].touched"
+                                    class="text text-danger">
+                                    Enter valid Mail ID
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <label class="text-lg text-dark mb-1 mt-2">Username </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                                    <input class="form-control " formControlName="username" placeholder="Username"
+                                        type="text" required="">
+                                </div>
+                                <div style="text-align:margin-left;"
+                                    *ngIf="profileForm.controls['username'].invalid && profileForm.controls['username'].touched"
+                                    class="text text-danger">
+                                    Username field is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <label class="text-lg text-dark mt-3 mb-1">District</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-location-arrow"></i></span>
+                                    <input class="form-control " formControlName="district" placeholder="District"
+                                        type="text" required="">
+                                </div>
+                                <div style="text-align:margin-left;"
+                                    *ngIf="profileForm.controls['district'].invalid && profileForm.controls['district'].touched"
+                                    class="text text-danger">
+                                    District field is required
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <label class="text-lg text-dark mb-1 mt-3 mt-2">Role</label>
+                                <div class="input-group ">
+                                    <span class="input-group-text"><i class="fa fa-user-alt"></i></span>
+                                    <input class="form-control " value="{{role}}" type="text" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-2">
+                            <button class="btn btn-success mt-3 mb-3" style="margin-right:20px ;"
+                                (click)="submit()">Save</button>
+                            <button type="button" class="btn btn-success mt-3 mb-3" (click)="change()">change Password
+                            </button>
+                            <button type="button" class="btn btn-danger mt-3 mb-3" (click)="clearData()"
+                                style="margin-left:20px ;">Delete my Account</button>
+                        </div>
+                    </div>
+                    <div *ngIf="step == 1" class="row mt-3" style="text-align:left ;">
+                        <div formGroupName="passwordForm">
+                            <h2 class="text text-center text-dark"
+                                style="font-family:'Times New Roman', Times, serif ;font-weight:bold ;">Change Password
+                            </h2>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div *ngIf="status == 2" class="alert alert-success">Successfully changed</div>
+                                    <div *ngIf="status == 1" class="alert alert-danger">Your old password is incorrect
+                                    </div>
+                                    <div *ngIf="status == 0" class="alert alert-danger">Password should not be same
+                                    </div>
+
+                                    <div class="col-1"></div>
+                                    <div class="col-md-5 mt-2">
+                                        <label for="" class="text-lg text-dark mb-1">Enter Old Password</label>
+                                        <div class="input-group ">
+                                            <input class="form-control " formControlName="oldPwd"
+                                                placeholder="Old password" type="text" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-2 mb-3">
+                                        <label for="" class="text-lg text-dark mb-1">Enter New Password</label>
+                                        <div class="input-group ">
+                                            <input class="form-control " formControlName="newPwd"
+                                                placeholder="New Password" [type]="fieldType?'text':'password'" required="">
+                                                <span class="input-group-text bg-white"><a type="button" (click)="view()"><i [class]="fieldType ? 'fa fa-eye': 'fa fa-eye-slash'"></i></a></span>
+                                        </div>
+                                        <div *ngIf="profileForm.get('passwordForm.newPwd')?.invalid"
+                                            class="text text-danger mt-1">
+                                            <h4 style="margin-bottom:-1px ;">Password must:</h4>
+                                            <ul>
+                                                <li>minimum of (eight)8 characters</li>
+                                                <li>Contain atleast one uppercase letter (A-Z),lowercase (a-z) and<br>
+                                                    special characters (~@$#)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-success" [disabled]="profileForm.invalid"
+                                        (click)='updatePassword()'>Submit</button>
+                                    <button class="btn btn-dark" style="margin-left:10px ;"
+                                        (click)="previous()">Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
