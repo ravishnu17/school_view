@@ -36,7 +36,7 @@ export class MainComponent implements OnInit {
       this.route.navigate(['/login']);
     }
 
-    if (window.location.href.endsWith('schoolProfile')){
+    if (window.location.href.endsWith('schoolprofile')){
       this.page='School Profile';
     }else if(window.location.href.endsWith('profile')){
       this.page='User Profile';

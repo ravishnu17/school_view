@@ -3044,7 +3044,7 @@
                                             <tr class="text-center">
                                                 <th>Boys</th>
                                                 <th>Girls</th>
-                                                <th><a type="button" (click)="addScholarship()"><i style="color:green;" class="fa fa-plus" > Add</i></a></th>
+                                                <th><a type="button" (click)="addScholarship()"><i style="color:green;" class="fa fa-plus" > </i></a></th>
                                             </tr>
                                             <tr *ngFor="let list of Scholarship().controls;let i=index" formGroupName="{{i}}">
                                                 
@@ -3087,7 +3087,7 @@
                                                             </select>
                                                         </div>
                                                     </td>
-                                                    <td style="text-align:center;padding:20px;"><a type="button" class="" (click)="removeScholarship(i)"><i style="color:red;" class="fa fa-minus"> Remove</i></a></td>
+                                                    <td style="text-align:center;padding:20px;"><a type="button" class="" (click)="removeScholarship(i)"><i style="color:red;" class="fa fa-minus"></i></a></td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -3113,7 +3113,7 @@
                                                             <th colspan="2">Season</th>
                                                             <th colspan="2">Time</th>
                                                             <th>Remark</th>
-                                                            <th>Action <a  type="button"  (click)="addShift()"><i style="color:green;" class="fa fa-plus"> Add</i></a></th>
+                                                            <th>Action <a  type="button"  (click)="addShift()"><i style="color:green;" class="fa fa-plus"></i></a></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -3161,7 +3161,7 @@
                                                                 </div>
                                                             </td>
                                                             <td style="text-align:center;padding:20px;">
-                                                                <a type="button" (click)="removeShift(n)"><i style="color:red;" class="fa fa-minus"> Remove</i></a>
+                                                                <a type="button" (click)="removeShift(n)"><i style="color:red;" class="fa fa-minus"></i></a>
                                                             </td>
                                                         </tr>
                                                 </tbody>
@@ -3182,7 +3182,7 @@
                                                         <th>Total No.of Boys</th>
                                                         <th>Total no.of Girls</th>
                                                         <th>Total no.of Student</th>
-                                                        <th>Actions  <a type="button" (click)="addClass()"><i style="color:green;" class="fa fa-plus"> Add</i></a></th>
+                                                        <th>Actions  <a type="button" (click)="addClass()"><i style="color:green;" class="fa fa-plus"> </i></a></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>    
@@ -3223,7 +3223,7 @@
                                                             </div>
                                                         </td>
                                                         <td style="text-align:center;padding:20px;">
-                                                            <a type="button" (click)="removeClass(j)"><i style="color:red;" class="fa fa-minus"> Remove</i></a>
+                                                            <a type="button" (click)="removeClass(j)"><i style="color:red;" class="fa fa-minus"> </i></a>
                                                         </td>
                                                     </tr>
                                                 </tbody>

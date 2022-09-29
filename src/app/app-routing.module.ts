@@ -10,7 +10,7 @@ import { UserProfileComponent } from './View/user-profile/user-profile.component
 
 const routes: Routes = [
   {path:'manage',component:AdminComponent},
-  {path:'login',component:LoginComponent},
+  {path:'login',component:LoginComponent },
   {path:'register',component:RegisterComponent},
   {path:'main',component:MainComponent,
   children:[
