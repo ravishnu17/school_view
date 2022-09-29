@@ -394,7 +394,7 @@ export class SchoolProfileComponent implements OnInit {
       }
       
       //patch value
-      this.dataForm.patchValue(arg);
+      // this.dataForm.patchValue(arg);
 
       //set scholarship value
       if (arg.Information19['scholarship']){
@@ -670,8 +670,4 @@ export class SchoolProfileComponent implements OnInit {
     
   }
 
-  ngAfterViewInit(){
-    console.log(this.pagination);
-    
-  }
 }
