@@ -144,6 +144,7 @@
                                     <div class="col-md-5 mt-2">
                                         <label for="" class="text-lg text-dark mb-1">Enter Old Password</label>
                                         <div class="input-group ">
+                                            <span class="input-group-text"><i class="fa fa-key"></i></span>
                                             <input class="form-control " formControlName="oldPwd"
                                                 placeholder="Old password" type="text" required="">
                                         </div>
@@ -151,6 +152,7 @@
                                     <div class="col-md-6 mt-2 mb-3">
                                         <label for="" class="text-lg text-dark mb-1">Enter New Password</label>
                                         <div class="input-group ">
+                                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
                                             <input class="form-control " formControlName="newPwd"
                                                 placeholder="New Password" [type]="fieldType?'text':'password'" required="">
                                                 <span class="input-group-text bg-white"><a type="button" (click)="view()"><i [class]="fieldType ? 'fa fa-eye': 'fa fa-eye-slash'"></i></a></span>

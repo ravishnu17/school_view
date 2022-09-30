@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SchoolDataComponent } from './DataTable/school-data/school-data.component';
+import { TableViewComponent } from './DataTable/table-view/table-view.component';
 import { AdminComponent } from './View/admin/admin.component';
 import { HomeComponent } from './View/home/home.component';
 import { LoginComponent } from './View/login/login.component';
@@ -17,7 +19,9 @@ const routes: Routes = [
     {path:'home',component:HomeComponent},
     {path:'userprofile',component:UserProfileComponent},
     {path:'schoolprofile',component:SchoolProfileComponent}
-  ]}
+  ]},
+  {path:'tableview',component:TableViewComponent},
+  {path:'modify',component:SchoolDataComponent}
 ];
 
 @NgModule({

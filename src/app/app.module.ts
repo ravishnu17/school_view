@@ -22,6 +22,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import { TableViewComponent } from './DataTable/table-view/table-view.component';
+import { SchoolDataComponent } from './DataTable/school-data/school-data.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import {MatListModule} from '@angular/material/list';
     LoginComponent,
     RegisterComponent,
     UserProfileComponent,
-    SchoolProfileComponent
+    SchoolProfileComponent,
+    TableViewComponent,
+    SchoolDataComponent
   ],
   imports: [
     BrowserModule,

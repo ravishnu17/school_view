@@ -86,7 +86,32 @@ export class SubServiceService {
   }
 
   changeAll(data:any){
-    const path = '/changeAll'
+    const path = '/changeAll';
     return this.mainService.put(data,path);
+  }
+
+  schoolData(id:any){
+    const path='/schoolData/'+id
+    return this.mainService.get(path);
+  }
+
+  deleteSchoolProfile(id:any){
+    const path = '/deleteSchoolID/'+id ;
+    return this.mainService.delete(path);
+  }
+
+  updateSchoolProfile(id:any , data:any){
+    const path = '/updateSchoolProfile/'+id;
+    return this.mainService.put(data,path);
+  }
+
+  getUserName(){
+    const path = '/getUserName';
+    return this.mainService.get(path);
+  }
+
+  addSchoolProfile(data:any){
+    const path = '/newProfile';
+    return this.mainService.post(data , path);
   }
 }

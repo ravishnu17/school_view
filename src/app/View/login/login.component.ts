@@ -114,8 +114,12 @@ view(){
         this.form.append("username",this.loginForm.get('login.username')?.value);
         this.form.append("password",this.loginForm.get('login.password')?.value);
 
-      this.subService.login(this.form).subscribe( next => {
-        this.data=next;
+      this.subService.login(this.form).subscribe( response => {
+        this.data=response;
+
+        if(response){
+          this.loader();
+        }
 
         if(this.data.access_token != null && this.data.role != 2 ){ 
           localStorage.setItem('token',this.data.access_token);
@@ -140,5 +144,9 @@ view(){
         
       });      
     }
+  }
+
+  loader(){
+    // document.getElementById('loading')?.style.display = 'none';
   }
 }

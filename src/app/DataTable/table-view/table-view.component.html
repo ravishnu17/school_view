@@ -1,0 +1,48 @@
+<div class="container-fluid py-5">
+    <div class="card">
+        <div class="card-header"><h2 class="d-flex justify-content-center" style="font-family:'Times New Roman', Times, serif ;">School profile Data Table</h2></div>
+        <div class="card-body">
+            <div class="card-text ">
+                <div class="table-responsive">
+                    <table class="table table-bordered" style="white-space: nowrap;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th rowspan="2">S.No.</th>
+                                <th rowspan="2">ID</th>
+                                <th rowspan="2">Admin</th>
+                                <th rowspan="2">Institution Name</th>
+                                <th rowspan="2">Office Mail ID</th>
+                                <th rowspan="2">Principal Name</th>
+                                <th rowspan="2">Principal Mail ID</th>
+                                <th rowspan="2">Address</th>
+                                <th colspan="1" >Action</th>
+                            </tr>
+                            <tr>
+                                <th ><button (click)="add()" class="btn-sm btn-outline-success" style="text-decoration:none ;" > Add +</button></th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr *ngFor="let row of data;let i=index;">
+                                <td>{{i+1}}</td>
+                                <td>{{row.id}}</td>
+                                <td>{{row.username}}</td>
+                                <td>{{row.institutionName}}</td>
+                                <td>{{row.officeMail}}</td>
+                                <td>{{row.principalName}}</td>
+                                <td>{{row.principalOfficeMobileNo}}</td>
+                                <td>{{row.cityVillageTown}},{{ row.district}}, {{row.state}}</td>
+                                <td><div class="d-flex justify-content-center">
+                                        <button (click)="remove(row.id)" type="button" class="btn-sm btn-outline-danger">Remove</button>
+                                        <button (click)="edit(row.id)" class="btn-sm btn-outline-primary" style="margin-left:10px ;">Edit</button>
+                                        <button (click)="viewAll()" class="btn-sm btn-outline-primary" style="margin-left:10px ;">View All</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

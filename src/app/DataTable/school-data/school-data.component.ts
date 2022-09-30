@@ -1,18 +1,19 @@
-import { Component, OnInit  } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup , FormBuilder  ,FormArray , Validators} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SubServiceService } from 'src/app/Service/sub-service.service';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-school-profile',
-  templateUrl: './school-profile.component.html',
-  styleUrls: ['./school-profile.component.scss']
+  selector: 'app-school-data',
+  templateUrl: './school-data.component.html',
+  styleUrls: ['./school-data.component.scss']
 })
-export class SchoolProfileComponent implements OnInit {
+export class SchoolDataComponent implements OnInit {
 
+  type = 'save';
+  id:any;
   status:any;
   submitted = false;
   step=1;
@@ -24,15 +25,17 @@ export class SchoolProfileComponent implements OnInit {
   schoolLevel :any=[];
   dropdownSetting : IDropdownSettings={};
 
-  constructor(private fb : FormBuilder , private subService : SubServiceService ,private route : Router) { }
+  constructor(private fb : FormBuilder , private subService : SubServiceService ,private route : Router , private activateRout:ActivatedRoute) { }
 
   ngOnInit(): void {
 
     //check token
-    if(localStorage.getItem('token')==null){
-      Swal.fire("Closed","Your Session is ended. Login Again!",'info');
-      this.route.navigate(['/login']);
-    }
+    // if(localStorage.getItem('token')==null){
+    //   Swal.fire("Closed","Your Session is ended. Login Again!",'info');
+    //   this.route.navigate(['/login']);
+    // }
+
+    this.id = this.activateRout.snapshot.params['id'];
 
     //set dropdown setting
     this.dropdownSetting={
@@ -61,14 +64,14 @@ export class SchoolProfileComponent implements OnInit {
 
     //form controls
     this.dataForm = this.fb.group({
-      
+      userid:[,[Validators.required]],
       Information1:this.fb.group({
         institutionName:[,[Validators.required]],
         postalAddress:[,[Validators.required]] ,
         district:[,[Validators.required]],
         state:[,[Validators.required]],
         cityVillageTown:[,[Validators.required]],
-        pincode:['',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(6),Validators.maxLength(6)]],
+        pincode:[,[Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(6),Validators.maxLength(6)]],
         url:[,[Validators.required]],
         officeMail:[,[Validators.required,Validators.email]],  
         officeMobile:[,[Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10),Validators.maxLength(10)]],
@@ -369,70 +372,91 @@ export class SchoolProfileComponent implements OnInit {
       
     });
 
-    //service to call backend
-    this.subService.schoolProfile().subscribe((arg:any)=>{
-      
-      // set multiselect value for school level
-      if (arg.Information2['schoolLevel']){
-
-        for(let val of arg.Information2['schoolLevel']){
-          this.selectedItems.push({id:Number(val[0]),text:val[1]});
-        }
-        arg.Information2['schoolLevel'] = this.selectedItems;
-      }
-
-      // set multiselect value for medium
-      if(arg.Information2['medium']){
+    if(this.id){
+      this.type = 'update';
+      //service to call backend
+      this.subService.schoolData(this.id).subscribe((arg:any)=>{
         
-        this.selectedItems=[];
-        for (let val of arg.Information2['medium']){
-          this.selectedItems.push({id:Number(val[0]),text:val[1]})
+        // set multiselect value for school level
+        if (arg.Information2['schoolLevel']){
+
+          for(let val of arg.Information2['schoolLevel']){
+            this.selectedItems.push({id:Number(val[0]),text:val[1]});
+          }
+          arg.Information2['schoolLevel'] = this.selectedItems;
         }
-        arg.Information2['medium'] =this.selectedItems;
 
-      }
-      
-      //patch value
-      this.dataForm.patchValue(arg);
+        // set multiselect value for medium
+        if(arg.Information2['medium']){
+          
+          this.selectedItems=[];
+          for (let val of arg.Information2['medium']){
+            this.selectedItems.push({id:Number(val[0]),text:val[1]})
+          }
+          arg.Information2['medium'] =this.selectedItems;
 
-      //set scholarship value
-      if (arg.Information19['scholarship']){
-
-        this.getValue=arg.Information19['scholarship'];
-        for (let data of this.getValue){         
-          this.Scholarship().push(this.loadScholarship(data));
         }
-      }
+        
+        //patch value
+        this.dataForm.patchValue(arg);
 
-      //set shift control value
-      if(arg.Information20['shift']){
+        //set scholarship value
+        if (arg.Information19['scholarship']){
 
-        this.getValue = arg.Information20['shift'];
-        for(let data of this.getValue){
-          this.Shift().push(this.loadShift(data));
+          this.getValue=arg.Information19['scholarship'];
+          for (let data of this.getValue){         
+            this.Scholarship().push(this.loadScholarship(data));
+          }
         }
-      }
 
-      //set school class control value
-      if(arg.Information20['schoolClass']){
+        //set shift control value
+        if(arg.Information20['shift']){
 
-        this.getValue = arg.Information20['schoolClass'];
-        for(let data of this.getValue){
-          this.Schoolclass().push(this.loadClass(data));
+          this.getValue = arg.Information20['shift'];
+          for(let data of this.getValue){
+            this.Shift().push(this.loadShift(data));
+          }
         }
-      }      
-      
-    },
-    error =>{
-      Swal.fire({
-        title:'Session ended !',
-        text:"login Again...",
-        icon:'warning',
-        position:'center',
-        confirmButtonColor:'blue',
+
+        //set school class control value
+        if(arg.Information20['schoolClass']){
+
+          this.getValue = arg.Information20['schoolClass'];
+          for(let data of this.getValue){
+            this.Schoolclass().push(this.loadClass(data));
+          }
+        }      
+        
+      },
+      error =>{
+        Swal.fire('','Something went wrong','error');
+        // this.route.navigate(['/login']);
       });
-      this.route.navigate(['/login']);
-    });
+    }
+    else if(this.type == 'save'){
+      this.subService.getUserName().subscribe((data:any)=>{
+        this.selectedItems = data;
+
+        if (data[0]==null){
+          Swal.fire({
+            title:'Need Registration',
+            text:'No user found ! please register. ',
+            showCancelButton:true,
+            icon:'info',
+            confirmButtonText:'Click here to Register',
+            confirmButtonColor:'green'
+          }).then((response)=>{
+            if(response.isConfirmed){
+              this.route.navigate(['/register']);
+            }
+            else{
+              this.route.navigate(['/tableview']);
+            }
+          })
+        }
+
+      });
+    }
 
   }
 
@@ -444,6 +468,29 @@ export class SchoolProfileComponent implements OnInit {
       scholarshipGirls:[data[2]],
       Govtscholarship:[data[3]],
       Pvtscholarship:[data[4]],
+    });
+  }
+
+  // school class detail methods
+  loadClass(data:any):FormGroup{
+    return this.fb.group({
+      className:[data[0]],
+      classSection:[data[1]],
+      classBoys:[data[2]],
+      classGirls:[data[3]],
+      classStudent:[data[4]],
+    });
+  }
+
+  // school shift methods
+  loadShift(data:any):FormGroup{
+    return this.fb.group({
+      shiftName:[data[0]],
+      shiftFromDate:[data[1]],
+      shiftToDate:[data[2]],
+      shiftFromTime:[data[3]],
+      shiftToTime:[data[4]],
+      shiftRemark:[data[5]]
     });
   }
 
@@ -474,17 +521,6 @@ export class SchoolProfileComponent implements OnInit {
     this.Scholarship().removeAt(i)
   } 
 
-// school shift methods
-  loadShift(data:any):FormGroup{
-    return this.fb.group({
-      shiftName:[data[0]],
-      shiftFromDate:[data[1]],
-      shiftToDate:[data[2]],
-      shiftFromTime:[data[3]],
-      shiftToTime:[data[4]],
-      shiftRemark:[data[5]]
-    });
-  }
   
   newShift():FormGroup{
     return this.fb.group({
@@ -509,16 +545,7 @@ export class SchoolProfileComponent implements OnInit {
     this.Shift().removeAt(n);
   }
 
-  // school class detail methods
-  loadClass(data:any):FormGroup{
-    return this.fb.group({
-      className:[data[0]],
-      classSection:[data[1]],
-      classBoys:[data[2]],
-      classGirls:[data[3]],
-      classStudent:[data[4]],
-    });
-  }
+  
 
   newClass():FormGroup{
     return this.fb.group({
@@ -556,27 +583,42 @@ export class SchoolProfileComponent implements OnInit {
     this.step=val;
   }
 
+
   // form submit method
   submit(data:any){
       
-    var name='Information'+data;
+    var formName='Information'+data;
     this.submitted=true;
+    var formValue = Object.assign({'user_id':this.dataForm.controls['userid'].value},this.dataForm.controls[formName].value);
+    console.log(formValue);
     
-    if(this.dataForm.controls[name].valid){      
-      this.subService.updateSchoolData(this.dataForm.controls[name].value).subscribe(arg =>{
-        this.status = arg;
-        this.Status();
-      },error =>{
-        Swal.fire({
-          title:'Session ended !',
-          text:"login Again...",
-          icon:'warning',
-          position:'center',
-          confirmButtonColor:'blue',
+    if(this.dataForm.controls[formName].valid){   
+       
+      if(this.type == 'save'){
+        console.log("save");
+        this.subService.addSchoolProfile(formValue).subscribe((data:any)=>{
+          console.log(data);
         });
-        this.route.navigate(['/login']);
-      });
-    } 
+      }  
+      else if(this.type == 'update'){
+        console.log("update");
+        
+        this.subService.updateSchoolProfile(this.id , this.dataForm.controls[formName].value).subscribe(arg =>{
+          this.status = arg;
+          this.Status();
+        },error =>{
+          console.log(error);
+          
+          Swal.fire({
+            title:'Something went wrong',
+            text:"login Again...",
+            icon:'warning',
+            position:'center',
+            confirmButtonColor:'blue',
+          });
+        });
+      }
+    }     
 
   }
 
@@ -601,7 +643,7 @@ export class SchoolProfileComponent implements OnInit {
         position:'top',
 
       });
-      this.route.navigate(['/login']);
+      // this.route.navigate(['/login']);
     }
   }
 
@@ -635,7 +677,7 @@ export class SchoolProfileComponent implements OnInit {
 
           this.dataForm.markAsUntouched(); 
           this.submitted = false;
-          this.route.navigate(['/login']);
+          // this.route.navigate(['/login']);
         });
       }
       else{
@@ -663,7 +705,7 @@ export class SchoolProfileComponent implements OnInit {
           position:'center',
           confirmButtonColor:'blue',
         });
-        this.route.navigate(['/login']);
+        // this.route.navigate(['/login']);
       });
     }
     
