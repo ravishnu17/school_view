@@ -24,6 +24,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import { TableViewComponent } from './DataTable/table-view/table-view.component';
 import { SchoolDataComponent } from './DataTable/school-data/school-data.component';
+import { DataviewComponent } from './DataTable/dataview/dataview.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { SchoolDataComponent } from './DataTable/school-data/school-data.compone
     UserProfileComponent,
     SchoolProfileComponent,
     TableViewComponent,
-    SchoolDataComponent
+    SchoolDataComponent,
+    DataviewComponent
   ],
   imports: [
     BrowserModule,

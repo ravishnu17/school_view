@@ -17,6 +17,8 @@ export class TableViewComponent implements OnInit {
   ngOnInit(): void {
     
     this.main.get('/SchoolProfileData').subscribe((response:any)=>{
+      console.log(response);
+      
       this.data = response;
       
     });
@@ -51,8 +53,8 @@ export class TableViewComponent implements OnInit {
     this.rout.navigate(['/modify',{'id':id}]);
   }
 
-  viewAll(){
-
+  viewAll(id:any){
+    this.rout.navigate(['/view',{'id':id}]);
   }
 
 }

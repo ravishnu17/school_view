@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DataviewComponent } from './DataTable/dataview/dataview.component';
 import { SchoolDataComponent } from './DataTable/school-data/school-data.component';
 import { TableViewComponent } from './DataTable/table-view/table-view.component';
 import { AdminComponent } from './View/admin/admin.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
     {path:'schoolprofile',component:SchoolProfileComponent}
   ]},
   {path:'tableview',component:TableViewComponent},
-  {path:'modify',component:SchoolDataComponent}
+  {path:'modify',component:SchoolDataComponent},
+  {path:'view',component:DataviewComponent}
 ];
 
 @NgModule({
