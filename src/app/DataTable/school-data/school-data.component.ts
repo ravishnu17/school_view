@@ -31,10 +31,10 @@ export class SchoolDataComponent implements OnInit {
   ngOnInit(): void {
 
     //check token
-    // if(localStorage.getItem('token')==null){
-    //   Swal.fire("Closed","Your Session is ended. Login Again!",'info');
-    //   this.route.navigate(['/login']);
-    // }
+    if(localStorage.getItem('token')==null){
+      Swal.fire("Closed","Your Session is ended. Login Again!",'info');
+      this.route.navigate(['/login']);
+    }
 
     this.id = this.activateRout.snapshot.params['id'];
     this.viewonly = this.activateRout.snapshot.params['action']
@@ -610,6 +610,9 @@ export class SchoolDataComponent implements OnInit {
         console.log("save");
         this.subService.addSchoolProfile(formValue).subscribe((data:any)=>{
           console.log(data);
+          this.status = data;
+          this.Status();
+          this.dataForm.controls['userid'].disable();
         });
       }  
       else if(this.type == 'update'){

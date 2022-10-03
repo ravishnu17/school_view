@@ -7,9 +7,9 @@
                     <div class="col-md-2">
                         <button type="button" style="margin-left:10px;" class="btn-sm btn-dark" routerLink="/tableview">Back</button>
                     </div>
-                    <div class="col-md-3">
-                        <label *ngIf="type == 'save'">Select User to Save data <span class="text-danger bg-white">*</span></label>
-                        <div class="input-group" *ngIf="type == 'save'">
+                    <div class="col-md-3" *ngIf="type == 'save'">
+                        <label >Select User to Save data <span class="text-danger bg-white">*</span></label>
+                        <div class="input-group">
                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                             <select class="form-select" formControlName = "userid">
                                 <option value=null>-- select --</option>
@@ -562,7 +562,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h5 class="mt-4">School secured other essential Certificates</h5>
+                                <h2 class="mt-4">School secured other essential Certificates</h2>
                         
                                 <div class="row mt-1">
                                     <div class="col-3">
