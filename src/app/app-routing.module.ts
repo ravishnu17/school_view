@@ -11,6 +11,7 @@ import { SchoolProfileComponent } from './View/school-profile/school-profile.com
 import { UserProfileComponent } from './View/user-profile/user-profile.component';
 
 const routes: Routes = [
+  {path:'' , redirectTo:'/login',pathMatch:'full'},
   {path:'login',component:LoginComponent },
   {path:'register',component:RegisterComponent},
   {path:'main',component:MainComponent,
