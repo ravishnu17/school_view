@@ -21,7 +21,7 @@ export class AdminComponent implements OnInit {
 
     if(localStorage.getItem('token')==null){
       Swal.fire("Closed","Please Login again. Login Again!",'info');
-      this.route.navigate(['']);
+      this.route.navigate(['/login']);
     }
 
     this.service.getUsers().subscribe((data:any)=>{
@@ -37,7 +37,7 @@ export class AdminComponent implements OnInit {
       this.data = data;
     },error=>{
       Swal.fire("Closed","Your Session is ended. Login Again!",'info');
-      this.route.navigate(['']);
+      this.route.navigate(['/login']);
     });
 
     this.changeForm = this.fb.group({
@@ -65,7 +65,7 @@ export class AdminComponent implements OnInit {
 
   exit(){
     localStorage.clear();
-    this.route.navigate(['']);
+    this.route.navigate(['/login']);
   }
   
   delete(id:any,name:any){
@@ -87,6 +87,10 @@ export class AdminComponent implements OnInit {
       }
     });
 
-    }
+  }
+  register(){
+    this.route.navigate(['/register',{'action':true}]);
+  }
+
 
 }

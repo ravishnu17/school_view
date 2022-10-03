@@ -12,7 +12,6 @@ import { SchoolProfileComponent } from './View/school-profile/school-profile.com
 import { UserProfileComponent } from './View/user-profile/user-profile.component';
 
 const routes: Routes = [
-  {path:'manage',component:AdminComponent},
   {path:'login',component:LoginComponent },
   {path:'register',component:RegisterComponent},
   {path:'main',component:MainComponent,
@@ -21,6 +20,7 @@ const routes: Routes = [
     {path:'userprofile',component:UserProfileComponent},
     {path:'schoolprofile',component:SchoolProfileComponent}
   ]},
+  {path:'manage',component:AdminComponent},
   {path:'tableview',component:TableViewComponent},
   {path:'modify',component:SchoolDataComponent},
   {path:'view',component:DataviewComponent}

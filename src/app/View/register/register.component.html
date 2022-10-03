@@ -140,6 +140,7 @@
                                     </div>
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn-lg btn-primary mt-3 mb-2 ">Register</button>
+                                        <button *ngIf="action || !action" type="button" class="btn btn-dark" style="margin-left:20px ;" routerLink="/manage">Back</button>
                                         <p class=" mt-2">Have already an Account? <a routerLink="/login"
                                             style="color:blue;">Login here</a></p>
                                     </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { SubServiceService } from 'src/app/Service/sub-service.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,12 +11,13 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
+  action:any;
   registerForm!:FormGroup;
   data : any;
   error:any;
   submitted=false
   fieldType = false;
-  constructor(private fb1:FormBuilder,private subService:SubServiceService,private route:Router) { }
+  constructor(private fb1:FormBuilder,private subService:SubServiceService,private route:Router , private active:ActivatedRoute ) { }
   
   ngOnInit(): void {
     this.registerForm=this.fb1.group({
@@ -29,7 +30,11 @@ export class RegisterComponent implements OnInit {
       password:['',Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')],
       district:['']
 
-    })
+    });
+
+    this.action = this.active.snapshot.params['action'];
+    console.log(this.action);
+    
   }
 
 view(){
@@ -54,7 +59,7 @@ view(){
             position:'center',
             showConfirmButton:false,
           });
-          this.route.navigateByUrl('');
+          this.route.navigateByUrl('/login');
         }
       },error=>{
         console.log(error);

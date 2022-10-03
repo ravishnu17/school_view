@@ -447,7 +447,7 @@ export class SchoolDataComponent implements OnInit {
             confirmButtonColor:'green'
           }).then((response)=>{
             if(response.isConfirmed){
-              this.route.navigate(['/register']);
+              this.route.navigate(['/register',{'action':false}]);
             }
             else{
               this.route.navigate(['/tableview']);
@@ -591,7 +591,13 @@ export class SchoolDataComponent implements OnInit {
     this.submitted=true;
     var formValue = Object.assign({'user_id':this.dataForm.controls['userid'].value},this.dataForm.controls[formName].value);
     console.log(formValue);
-    
+
+    // if(this.type == 'save'){
+    //   if(this.dataForm.controls['userid'].invalid){
+    //     alert('Please select user to save data');
+    //   }
+    // }
+
     if(this.dataForm.controls[formName].valid){   
        
       if(this.type == 'save'){

@@ -12,11 +12,11 @@
                         <div class="input-group" *ngIf="type == 'save'">
                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                             <select class="form-select" formControlName = "userid">
-                                <option value="null">-- select --</option>
+                                <option value=null>-- select --</option>
                                 <option *ngFor="let name of selectedItems;" value="{{name.id}}">{{name.username}}</option>
                             </select>
                         </div>
-                        <div *ngIf="dataForm.controls['userid'].invalid && (dataForm.controls['userid'].touched || submitted)"></div>
+                        <div class="text text-danger" *ngIf="dataForm.controls['userid'].invalid && (dataForm.controls['userid'].touched || submitted)">Select user to save data</div>
                     </div>
                     <div class="col-md-3"></div>
                     <div class="col-md">

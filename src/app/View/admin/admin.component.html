@@ -29,8 +29,9 @@
                             </div>
                         </div>
                         <div class="card-footer bg-info">
-                            <div class="input-group ">
+                            <div class="d-flex justify-content-between">
                                 <button class="btn btn-success" (click)="change()">Change</button>
+                                <button class="btn btn-primary" routerLink="/tableview">Manage School Data</button>
                             </div>
                         </div>
 
@@ -39,7 +40,10 @@
             </div>
             <div class="col-6">
                 <div class="card">
-                    <h3 style="text-align:center ;" class="card-header bg-primary text-white">School User List </h3>
+                    <div class="card-header bg-primary d-flex justify-content-center align-items-center">
+                        <div class="text-white" style="font-size:17px ;">School User List </div>
+                        <button style="margin-left:20px ;" class="btn btn-success" (click)="register()"><i class="fa fa-user-plus"></i></button>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive" style="height:200px ;overflow:auto ;">
                         <table class="table table-bordered text-center">
@@ -60,7 +64,7 @@
                                 <td>{{list.name}}</td>
                                 <td>{{list.username}}</td>
                                 <td>{{list.role}}</td>
-                                <td><button class="btn btn-danger "  (click)="delete(list.id,list.name)"><i class="fa fa-user"></i></button></td>
+                                <td><button class="btn btn-danger "  (click)="delete(list.id,list.name)"><i class="fa fa-trash"></i></button></td>
                             </tr>
                         </tbody>
                         </table>

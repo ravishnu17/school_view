@@ -669,4 +669,9 @@ export class SchoolProfileComponent implements OnInit {
     
   }
 
+  ngAfterViewCheck(){
+    console.log(this.step);
+    
+  }
+
 }
