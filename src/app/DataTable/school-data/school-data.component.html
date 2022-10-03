@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-3"></div>
                     <div class="col-md">
-                        <div class="text text-dark d-flex justify-content-end">Note: <span class="text text-secondary bg-white" style="margin-left:3px;"> please save changes on each page</span></div>
+                        <div *ngIf="!viewonly" class="text text-dark d-flex justify-content-end">Note: <span class="text text-secondary bg-white" style="margin-left:3px;"> please save changes on each page</span></div>
                     </div>
                 </div>
 
@@ -3268,8 +3268,8 @@
                         </div>
                     </div>
 
-                    <button *ngIf=" step<20 " type="submit" class="btn btn-success btn-sm" style="margin-left:20px;">{{type}}</button>
-                    <button *ngIf=" step == 20 " type="button" (click)="submitAll()" class="btn btn-success btn-sm" style="margin-left:20px;">submit All</button>
+                    <button *ngIf=" step<20 && !viewonly " type="submit" class="btn btn-success btn-sm" style="margin-left:20px;">{{type}}</button>
+                    <button *ngIf=" step == 20 && !viewonly " type="button" (click)="submitAll()" class="btn btn-success btn-sm" style="margin-left:20px;">submit All</button>
                     <button *ngIf="step < 20" type="button" class="btn btn-primary btn-sm" (click)="next()" style="margin-left:20px;">Next <i class="fa fa-arrow-alt-circle-right"></i></button>
                     
                 </div>

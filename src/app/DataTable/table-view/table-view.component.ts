@@ -54,7 +54,7 @@ export class TableViewComponent implements OnInit {
   }
 
   viewAll(id:any){
-    this.rout.navigate(['/view',{'id':id}]);
+    this.rout.navigate(['/modify',{'id':id,'action':true}]);
   }
 
 }

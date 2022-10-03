@@ -14,6 +14,7 @@ export class SchoolDataComponent implements OnInit {
 
   type = 'save';
   id:any;
+  viewonly=false;
   status:any;
   submitted = false;
   step=1;
@@ -36,6 +37,7 @@ export class SchoolDataComponent implements OnInit {
     // }
 
     this.id = this.activateRout.snapshot.params['id'];
+    this.viewonly = this.activateRout.snapshot.params['action']
 
     //set dropdown setting
     this.dropdownSetting={
@@ -456,6 +458,10 @@ export class SchoolDataComponent implements OnInit {
         }
 
       });
+    }
+
+    if(this.viewonly){
+      this.dataForm.disable();
     }
 
   }
